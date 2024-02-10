@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+    body {
+    font-size: 24px;
+            background-image: url('https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-color: black;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 30px;
+            margin: 30px;
+            text-align: center;
+}
+
+.weather-app {
+    background-color: #dc1e1e;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+    width: 50%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    width: 47%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+</style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .weather-info {
+            margin-top: 20px;
+        }
+        .weather-info{
+            color: black;
+        }
+        .temperature {
+            color: black;
+        }
+        .weather-description {
+            color: black;
+        }
+        .weather-message {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <p class="weather-message">Enter a city to see the current weather conditions:</p>
+        <input type="text" id="city" placeholder="🔍︎ Search City"/>
+        <button onclick="fetchWeather()">Fetch Weather</button>
+        <div class="weather-info" id="weather-info">
+            <!-- Weather information will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        async function fetchWeather() {
+            const city = document.getElementById('city').value;
+            const data = await getWeatherData(city);
+
+            if (data) {
+                const weatherInfo = document.getElementById('weather-info');
+                weatherInfo.innerHTML = `
+                <h2>${data.name}, ${data.sys.country}</h2>
+                    <p>Temperature: ${data.main.temp}°K</p>
+                    <p>Weather: ${data.weather[0].description}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
+    <script>
+    async function getWeatherData(city) {
+    const apiKey = '96026a08ff7e0dab9f24133013145295';
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+    }
+}
+</script>
+</body>
+</html>
